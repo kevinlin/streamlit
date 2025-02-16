@@ -1,35 +1,10 @@
 import streamlit as st
+import pandas as pd
 
-# Give your app a title
-st.title("Streamlit Rocks")
+df = pd.read_csv('data/sample.csv', dtype='int')
 
-# Header
-st.header("This is a header")
+st.dataframe(df)
+st.write(df)
+st.table(df)
 
-# Subheader
-st.subheader("This is a subheader")
-
-# Markdown
-st.markdown("This is a bold text **text**")
-st.markdown("This is a [link](https://www.streamlit.io)")
-st.markdown("# Header1")
-st.markdown("## Header2")
-st.markdown("### Header3")
-
-# Divider
-st.divider()
-
-# Caption
-st.caption("This is a caption")
-
-# Code block
-st.code("""
-import numpy as np
-pd.read_csv(my_file.csv)
-""")
-
-# LaTeX
-st.latex("x = 2^2")
-
-# Output data
-st.write("Some text")
+st.metric(label='Population', value='900', delta=-20, delta_color='normal')
