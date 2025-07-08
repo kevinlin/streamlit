@@ -1,0 +1,17 @@
+[server]
+runOnSave = true
+
+[theme]
+base = "light"
+
+[client]
+toolbarMode = "minimal"
+
+[runner]
+fastRebuildOnFileChange = true
+
+[browser]
+gatherUsageStats = false
+
+[layout]
+wide = true
