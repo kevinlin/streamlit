@@ -44,7 +44,8 @@ streamlit/
 │   ├── 05_text.py           # Text formatting and display components
 │   ├── 06_data-display.py   # Data tables and metrics display
 │   ├── 07_charting.py       # Charts and data visualization
-│   └── 08_input-widget.py   # Interactive input widgets
+│   ├── 08_input-widget.py   # Interactive input widgets
+│   └── 09_user-activity-chart.py  # User activity analysis and visualization
 ├── data/                     # Sample data files
 │   ├── sample.csv           # Time series sample data
 │   └── sample_map.csv       # Geographic coordinates for mapping
@@ -164,6 +165,15 @@ Interactive input components:
 - **Controls**: Checkboxes, sliders with value ranges
 - **Data Integration**: Dynamic column selection from CSV data
 
+### User Activity Analysis Page (`pages/09_user-activity-chart.py`)
+Comprehensive user activity analytics and visualization:
+- **Interactive Dashboard**: Overview metrics with total users, active users, and country count
+- **Top Users Analysis**: Configurable top N users per country with slider control
+- **Country Breakdown**: Detailed tables showing top users by country with division information
+- **Multiple Visualizations**: Streamlit bar charts and custom matplotlib charts
+- **Statistical Insights**: Country-wise summaries with aggregated login metrics
+- **Key Performance Indicators**: Most active country, user, and engagement statistics
+
 ## 📊 Data Files
 
 ### `sample.csv`
@@ -181,8 +191,10 @@ Geographic coordinate data:
 ### `user_activity_summary.csv`
 User activity analytics data:
 - **Columns**: 22+ activity metrics including country, division, user details, and various count metrics
-- **Usage**: Complex data display and potential future analytics features
+- **Key Fields**: country, fullName, division, logins, and various activity counters
+- **Usage**: User activity analysis, login tracking, and performance analytics
 - **Scope**: User activity data from Malaysia and Singapore regions
+- **Analytics**: Powers the user activity dashboard with login count analysis by country
 
 ## ⚙️ Configuration
 
