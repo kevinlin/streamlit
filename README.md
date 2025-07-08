@@ -50,6 +50,8 @@ streamlit/
 │   └── sample_map.csv       # Geographic coordinates for mapping
 ├── .streamlit/              # Streamlit configuration
 │   └── config.toml          # App configuration settings
+├── pyproject.toml           # Modern Python project configuration
+├── requirements.txt         # Python dependencies
 └── README.md               # This file
 ```
 
@@ -57,29 +59,51 @@ streamlit/
 
 ### Prerequisites
 
-- Python 3.7 or higher
-- pip package manager
+- Python 3.8 or higher
+- pip package manager (or poetry for advanced dependency management)
 
 ### Setup
+
+#### Option 1: Using pip (Recommended)
 
 1. **Clone the repository** (or navigate to the project directory):
    ```bash
    cd streamlit
    ```
 
-2. **Install required dependencies**:
+2. **Create a virtual environment** (recommended):
    ```bash
-   pip install streamlit pandas numpy matplotlib
+   python -m venv .venv
+   source .venv/bin/activate  # On Windows: .venv\Scripts\activate
    ```
 
-3. **Run the application**:
+3. **Install required dependencies**:
    ```bash
-   streamlit run main_page.py
+   pip install -r requirements.txt
    ```
 
-4. **Access the application**:
-   - The app will automatically open in your default browser
-   - If not, navigate to `http://localhost:8501`
+#### Option 2: Using pip with pyproject.toml
+
+```bash
+pip install -e .
+```
+
+#### Option 3: Development Installation
+
+For development with additional tools (code formatting, linting, testing):
+```bash
+pip install -e ".[dev]"
+```
+
+### Running the Application
+
+```bash
+streamlit run main_page.py
+```
+
+**Access the application**:
+- The app will automatically open in your default browser
+- If not, navigate to `http://localhost:8501`
 
 ## 💻 Usage
 
@@ -162,14 +186,75 @@ User activity analytics data:
 
 ## ⚙️ Configuration
 
-The application uses Streamlit's configuration file (`.streamlit/config.toml`) with the following settings:
+### Project Configuration
 
-- **Server**: Auto-reload on save enabled
-- **Theme**: Light theme
-- **Client**: Minimal toolbar mode
-- **Runner**: Fast rebuild on file changes
-- **Browser**: Usage statistics collection disabled
-- **Layout**: Wide layout mode enabled
+The project uses modern Python configuration standards:
+
+#### `pyproject.toml`
+Modern Python project configuration following PEP 518/621 standards:
+- **Project metadata**: Name, version, description, authors
+- **Dependencies**: Core requirements and optional development dependencies
+- **Tool configurations**: Black (code formatting), Flake8 (linting), MyPy (type checking), Pytest (testing)
+- **Build system**: Setuptools-based build configuration
+- **Scripts**: Custom command entry points
+
+#### `requirements.txt`
+Traditional dependency file for simple pip installations:
+- Core dependencies: Streamlit, Pandas, NumPy, Matplotlib
+- Version pinning for reproducible environments
+
+### Streamlit Configuration
+
+The application uses Streamlit's configuration file (`.streamlit/config.toml`) with optimized settings:
+
+- **Server**: Auto-reload on save enabled for development
+- **Theme**: Light theme for consistent appearance
+- **Client**: Minimal toolbar mode for cleaner UI
+- **Runner**: Fast rebuild on file changes for rapid development
+- **Browser**: Usage statistics collection disabled for privacy
+- **Layout**: Wide layout mode for better data visualization
+
+## 🛠️ Development
+
+### Development Tools
+
+The project includes configuration for modern Python development tools:
+
+#### Code Formatting
+```bash
+# Install development dependencies
+pip install -e ".[dev]"
+
+# Format code with Black
+black .
+
+# Check code style with Flake8
+flake8 .
+```
+
+#### Type Checking
+```bash
+# Run type checking with MyPy
+mypy .
+```
+
+#### Testing
+```bash
+# Run tests with Pytest
+pytest
+
+# Run tests with coverage
+pytest --cov=. --cov-report=html
+```
+
+#### Pre-commit Hooks
+```bash
+# Install pre-commit hooks
+pre-commit install
+
+# Run hooks manually
+pre-commit run --all-files
+```
 
 ## 🤝 Contributing
 
@@ -178,14 +263,23 @@ To contribute to this project:
 1. Fork the repository
 2. Create a feature branch (`git checkout -b feature/new-feature`)
 3. Make your changes
-4. Test the application thoroughly
-5. Commit your changes (`git commit -am 'Add new feature'`)
-6. Push to the branch (`git push origin feature/new-feature`)
-7. Create a Pull Request
+4. Run code quality checks:
+   ```bash
+   black .
+   flake8 .
+   mypy .
+   pytest
+   ```
+5. Test the application thoroughly
+6. Commit your changes (`git commit -am 'Add new feature'`)
+7. Push to the branch (`git push origin feature/new-feature`)
+8. Create a Pull Request
 
 ### Development Guidelines
 
-- Follow Python PEP 8 style guidelines
+- Follow Python PEP 8 style guidelines (enforced by Black and Flake8)
+- Add type hints where appropriate (checked by MyPy)
+- Write tests for new functionality
 - Add comments for complex functionality
 - Test all interactive components
 - Ensure compatibility with the existing page structure
